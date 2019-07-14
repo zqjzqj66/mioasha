@@ -1,0 +1,62 @@
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+spring:
+#        cache: true
+#        gzipped: true
+#      cache:
+#        cachecontrol:
+#          cache-private: true
+#      strategy:
+#        content:
+#          enabled: true
+#          paths: /**
+#        fixed:
+#          enabled: true
+#          paths: /**
+#          version: v1
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/miaosha
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      query-timeout: 2400
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      filters: stat,wall,slf4j
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  redis:
+    cluster:
+      nodes: 192.168.233.166:6379,192.168.233.166:6379,192.168.233.166:6379,192.168.233.166:6379,192.168.233.166:6379,192.168.233.166:6379
+
+#  resources:
+#    chain:
+#      strategy:
+#        fixed:
+#          enabled: true
+#          paths: /**
+#          version: v1
+#      cache: true
+#      gzipped: true
+
+server:
+  port: 8090
+jwt:
+  header: Authorization   #http请求头所需要的字段
+  secret: mySecret        #jwt秘钥
+  expiration: 604800      #7天 单位:秒
+  auth-path: auth         #认证请求的路径
+  md5-key: randomKey      #md5加密混淆key
+  ignore: ignore
